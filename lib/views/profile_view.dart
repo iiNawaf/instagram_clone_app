@@ -16,10 +16,9 @@ final profileViewModel = ChangeNotifierProvider((ref) {
 });
 
 class ProfileView extends ConsumerWidget {
-  ProfileView({super.key});
+  const ProfileView({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewModelProvider = ref.watch(profileViewModel);
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.paddingMedium),
       child: DefaultTabController(

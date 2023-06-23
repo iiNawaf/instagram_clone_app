@@ -20,4 +20,6 @@ class AppDimensions {
   static const iconSmall = 20.0;
   static const iconMedium = 24.0;
   static const iconLarge = 28.0;
+
+  static const containerHeightSmall = 45.0;
 }

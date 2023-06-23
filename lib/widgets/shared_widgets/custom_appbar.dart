@@ -3,9 +3,9 @@ import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.da
 
 class CustomAppBar extends StatelessWidget {
   Widget? leading;
-  List<Widget> actions;
+  List<Widget>? actions;
   String? title;
-  CustomAppBar({super.key, this.leading, required this.actions, this.title});
+  CustomAppBar({super.key, this.leading, this.actions, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CustomAppBar extends StatelessWidget {
         child: leading
       ),
       leadingWidth: leading == null ? 56 : 120,
-      actions: actions,
+      actions: actions ?? [],
     );
   }
 }

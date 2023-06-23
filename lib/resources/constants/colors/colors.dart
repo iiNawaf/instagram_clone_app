@@ -10,4 +10,5 @@ class AppColors {
   static const unselectedLabelColor = Color(0xffafafaf);
   static const secondaryTextColor = Color(0xff858585);
   static const inputBgColor = Color(0xff121212);
+  static const errorColor = Color(0xffff0000);
 }
