@@ -10,7 +10,10 @@ class UserModel with _$UserModel {
   const factory UserModel({
     required String id,
     required String email,
+    required String name,
     required String username,
+    required String profileImageUrl,
+    required String bio,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, Object?> json) =>

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_app/resources/constants/constants.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
-import 'package:instagram_clone_app/viewmodels/sign_up_viewmodel.dart';
+import 'package:instagram_clone_app/resources/constants/routes/routes.dart';
+import 'package:instagram_clone_app/viewmodels/sign_up/sign_up_viewmodel.dart';
 import 'package:instagram_clone_app/widgets/shared_widgets/custom_appbar.dart';
 import 'package:instagram_clone_app/widgets/shared_widgets/custom_button.dart';
 import 'package:instagram_clone_app/widgets/shared_widgets/custom_textfield.dart';
 
 final signUpViewModelProvider = ChangeNotifierProvider((ref) {
-  return SignUpViewModel();
+  return SignUpViewModel(ref);
 });
 
 class SignUpPasswordView extends HookConsumerWidget {
@@ -63,6 +65,7 @@ class SignUpPasswordView extends HookConsumerWidget {
                 ),
                 const SizedBox(height: 15),
                 CustomTextField(
+                  type: "auth",
                   controller: passwordController,
                   hintText: "Password",
                   isError: isError.value,
@@ -89,10 +92,12 @@ class SignUpPasswordView extends HookConsumerWidget {
                     if (isButtonEnabled.value) {
                       isLoading.value = true;
                       isError.value = false;
+                      errorMsg.value = "";
                       // start sign up
                       final result = await ref
                           .read(signUpViewModelProvider.notifier)
                           .signUp(email, passwordController.text, username);
+                      context.goNamed(AppRoutes.appManagerRouteName);
                       if (!result) {
                         isError.value = true;
                         errorMsg.value =

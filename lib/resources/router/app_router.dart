@@ -3,9 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_app/repositories/user_repository.dart';
 import 'package:instagram_clone_app/resources/constants/routes/routes.dart';
-import 'package:instagram_clone_app/views/add_post_view.dart';
-import 'package:instagram_clone_app/views/app_manager_view.dart';
-import 'package:instagram_clone_app/views/login_view.dart';
+import 'package:instagram_clone_app/views/add_post/add_post_view.dart';
+import 'package:instagram_clone_app/views/app_manager/app_manager_view.dart';
+import 'package:instagram_clone_app/views/login/login_view.dart';
+import 'package:instagram_clone_app/views/profile/edit_profile_view.dart';
 import 'package:instagram_clone_app/views/sign_up/sign_up_password_view.dart';
 import 'package:instagram_clone_app/views/sign_up/sign_up_username_view.dart';
 
@@ -47,23 +48,29 @@ class AppRouter {
             },
           ),
           GoRoute(
-              path: AppRoutes.signUpRouteUsernamePath,
-              name: AppRoutes.signUpRouteUsernameName,
-              builder: (BuildContext context, GoRouterState state) {
-                return const SignUpUsernameView();
-              },
-              routes: [
-                GoRoute(
-                  path: AppRoutes.signUpRoutePasswordPath,
-                  name: AppRoutes.signUpRoutePasswordName,
-                  builder: (BuildContext context, GoRouterState state) {
-                    return SignUpPasswordView(
-                      email: state.queryParameters['email']!,
-                      username: state.queryParameters['username']!,
-                    );
-                  },
-                )
-              ])
+            path: AppRoutes.signUpRouteUsernamePath,
+            name: AppRoutes.signUpRouteUsernameName,
+            builder: (BuildContext context, GoRouterState state) {
+              return const SignUpUsernameView();
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.signUpRoutePasswordPath,
+            name: AppRoutes.signUpRoutePasswordName,
+            builder: (BuildContext context, GoRouterState state) {
+              return SignUpPasswordView(
+                email: state.queryParameters['email']!,
+                username: state.queryParameters['username']!,
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.editProfilePath,
+            name: AppRoutes.editProfileName,
+            builder: (BuildContext context, GoRouterState state) {
+              return EditProfileView();
+            },
+          ),
         ]);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
-import 'package:instagram_clone_app/viewmodels/home_viewmodel.dart';
+import 'package:instagram_clone_app/viewmodels/home/home_viewmodel.dart';
 import 'package:instagram_clone_app/widgets/home/post_like_btn.dart';
 import 'package:instagram_clone_app/widgets/home/post_likes_number.dart';
 import 'package:instagram_clone_app/widgets/home/post_owner_img.dart';

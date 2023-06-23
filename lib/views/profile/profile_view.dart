@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_app/resources/constants/colors/colors.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
-import 'package:instagram_clone_app/viewmodels/profile_viewmodel.dart';
+import 'package:instagram_clone_app/resources/constants/routes/routes.dart';
+import 'package:instagram_clone_app/viewmodels/profile/profile_viewmodel.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_bio.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_button.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_followers.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_following.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_img.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_posts.dart';
-import 'package:instagram_clone_app/widgets/profile/profile_username.dart';
+import 'package:instagram_clone_app/widgets/profile/profile_name.dart';
 
-final profileViewModel = ChangeNotifierProvider((ref) {
-  return ProfileViewModel();
+final profileViewModelProvider = ChangeNotifierProvider((ref) {
+  return ProfileViewModel(ref);
 });
 
 class ProfileView extends ConsumerWidget {
   const ProfileView({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final viewModel = ref.watch(profileViewModelProvider);
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.paddingMedium),
       child: DefaultTabController(
@@ -80,17 +83,18 @@ class ProfileView extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 5),
-                    ProfileUsername(
-                      username: "Nawaf",
+                    ProfileName(
+                      name: viewModel.loggedInUser().username,
                     ),
-                    ProfileBio(bio: "BIOBIO"),
+                    ProfileBio(bio: viewModel.loggedInUser().bio),
                     const SizedBox(height: 10),
                     Row(
                       children: [
                         Expanded(
                             child: ProfileButton(
                           title: "Edit profile",
-                          onTap: () {},
+                          onTap: () =>
+                              context.pushNamed(AppRoutes.editProfileName),
                         )),
                         const SizedBox(
                           width: 5,

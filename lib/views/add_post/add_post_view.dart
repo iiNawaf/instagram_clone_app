@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_app/resources/constants/colors/colors.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
-import 'package:instagram_clone_app/viewmodels/add_post_viewmodel.dart';
+import 'package:instagram_clone_app/viewmodels/add_post/add_post_viewmodel.dart';
 import 'package:instagram_clone_app/widgets/add_post/add_post_img.dart';
 import 'package:instagram_clone_app/widgets/add_post/add_post_tag.dart';
 import 'package:instagram_clone_app/widgets/add_post/add_post_textfield.dart';

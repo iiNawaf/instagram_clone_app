@@ -11,4 +11,5 @@ class AppColors {
   static const secondaryTextColor = Color(0xff858585);
   static const inputBgColor = Color(0xff121212);
   static const errorColor = Color(0xffff0000);
+  static const snackBarBgColor = Color(0xff242424);
 }

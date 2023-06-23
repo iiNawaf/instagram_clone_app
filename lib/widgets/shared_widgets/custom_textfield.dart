@@ -8,15 +8,16 @@ class CustomTextField extends HookWidget {
   Widget? suffixIcon;
   bool obscureText;
   bool isError;
+  String type;
   TextEditingController controller;
-  CustomTextField({
-    super.key,
-    required this.hintText,
-    this.suffixIcon,
-    required this.isError,
-    required this.obscureText,
-    required this.controller,
-  });
+  CustomTextField(
+      {super.key,
+      required this.hintText,
+      this.suffixIcon,
+      required this.isError,
+      required this.obscureText,
+      required this.controller,
+      required this.type});
 
   final showSuffix = useState(false);
 
@@ -24,10 +25,7 @@ class CustomTextField extends HookWidget {
   Widget build(BuildContext context) {
     return Container(
       height: AppDimensions.containerHeightSmall,
-      decoration: BoxDecoration(
-          color: AppColors.inputBgColor,
-          borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
-          border: Border.all(color: isError? AppColors.errorColor : AppColors.borderColor)),
+      decoration: _buildBoxDecoration(),
       child: Center(
         child: TextField(
             controller: controller,
@@ -45,4 +43,16 @@ class CustomTextField extends HookWidget {
       ),
     );
   }
+
+  _buildBoxDecoration() {
+    return type == "auth"
+        ? BoxDecoration(
+            color: AppColors.inputBgColor,
+            borderRadius:
+                BorderRadius.circular(AppDimensions.borderRadiusMedium),
+            border: Border.all(
+                color: isError ? AppColors.errorColor : AppColors.borderColor))
+        : null;
+  }
+  
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ProfileUsername extends StatelessWidget {
-  String username;
-  ProfileUsername({super.key, required this.username});
+class ProfileName extends StatelessWidget {
+  String name;
+  ProfileName({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      username,
+      name,
       style: Theme.of(context).textTheme.titleSmall,
     );
   }

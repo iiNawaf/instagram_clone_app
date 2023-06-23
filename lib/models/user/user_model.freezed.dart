@@ -22,7 +22,10 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 mixin _$UserModel {
   String get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  String get profileImageUrl => throw _privateConstructorUsedError;
+  String get bio => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +38,13 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({String id, String email, String username});
+  $Res call(
+      {String id,
+      String email,
+      String name,
+      String username,
+      String profileImageUrl,
+      String bio});
 }
 
 /// @nodoc
@@ -53,7 +62,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? name = null,
     Object? username = null,
+    Object? profileImageUrl = null,
+    Object? bio = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -64,9 +76,21 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      profileImageUrl: null == profileImageUrl
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -79,7 +103,13 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       __$$_UserModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String email, String username});
+  $Res call(
+      {String id,
+      String email,
+      String name,
+      String username,
+      String profileImageUrl,
+      String bio});
 }
 
 /// @nodoc
@@ -95,7 +125,10 @@ class __$$_UserModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? name = null,
     Object? username = null,
+    Object? profileImageUrl = null,
+    Object? bio = null,
   }) {
     return _then(_$_UserModel(
       id: null == id
@@ -106,9 +139,21 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      profileImageUrl: null == profileImageUrl
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -118,7 +163,12 @@ class __$$_UserModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserModel extends _UserModel {
   const _$_UserModel(
-      {required this.id, required this.email, required this.username})
+      {required this.id,
+      required this.email,
+      required this.name,
+      required this.username,
+      required this.profileImageUrl,
+      required this.bio})
       : super._();
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
@@ -129,11 +179,17 @@ class _$_UserModel extends _UserModel {
   @override
   final String email;
   @override
+  final String name;
+  @override
   final String username;
+  @override
+  final String profileImageUrl;
+  @override
+  final String bio;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, email: $email, username: $username)';
+    return 'UserModel(id: $id, email: $email, name: $name, username: $username, profileImageUrl: $profileImageUrl, bio: $bio)';
   }
 
   @override
@@ -143,13 +199,18 @@ class _$_UserModel extends _UserModel {
             other is _$_UserModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.username, username) ||
-                other.username == username));
+                other.username == username) &&
+            (identical(other.profileImageUrl, profileImageUrl) ||
+                other.profileImageUrl == profileImageUrl) &&
+            (identical(other.bio, bio) || other.bio == bio));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, username);
+  int get hashCode =>
+      Object.hash(runtimeType, id, email, name, username, profileImageUrl, bio);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +230,10 @@ abstract class _UserModel extends UserModel {
   const factory _UserModel(
       {required final String id,
       required final String email,
-      required final String username}) = _$_UserModel;
+      required final String name,
+      required final String username,
+      required final String profileImageUrl,
+      required final String bio}) = _$_UserModel;
   const _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -180,7 +244,13 @@ abstract class _UserModel extends UserModel {
   @override
   String get email;
   @override
+  String get name;
+  @override
   String get username;
+  @override
+  String get profileImageUrl;
+  @override
+  String get bio;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>

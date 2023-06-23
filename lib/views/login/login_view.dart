@@ -6,7 +6,7 @@ import 'package:instagram_clone_app/resources/constants/colors/colors.dart';
 import 'package:instagram_clone_app/resources/constants/constants.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
 import 'package:instagram_clone_app/resources/constants/routes/routes.dart';
-import 'package:instagram_clone_app/viewmodels/login_viewmodel.dart';
+import 'package:instagram_clone_app/viewmodels/login/login_viewmodel.dart';
 import 'package:instagram_clone_app/widgets/shared_widgets/custom_appbar.dart';
 import 'package:instagram_clone_app/widgets/shared_widgets/custom_button.dart';
 import 'package:instagram_clone_app/widgets/shared_widgets/custom_textfield.dart';
@@ -55,6 +55,7 @@ class LoginView extends HookConsumerWidget {
                 Image.asset(Constants.logoText, height: 60),
                 const SizedBox(height: 35),
                 CustomTextField(
+                  type: "auth",
                   isError: isError.value,
                   controller: emailController,
                   hintText: "Email",
@@ -67,6 +68,7 @@ class LoginView extends HookConsumerWidget {
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
+                  type: "auth",
                     isError: isError.value,
                     controller: passwordController,
                     hintText: "Password",

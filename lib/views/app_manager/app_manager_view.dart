@@ -7,7 +7,7 @@ import 'package:instagram_clone_app/resources/constants/constants.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
 import 'package:instagram_clone_app/resources/constants/icons/icons.dart';
 import 'package:instagram_clone_app/resources/constants/routes/routes.dart';
-import 'package:instagram_clone_app/viewmodels/app_manager_viewmodel.dart';
+import 'package:instagram_clone_app/viewmodels/app_manager/app_manager_viewmodel.dart';
 import 'package:instagram_clone_app/widgets/shared_widgets/custom_appbar.dart';
 
 final appManagerViewModelProvider = ChangeNotifierProvider((ref) {
@@ -30,7 +30,7 @@ class AppManagerView extends HookConsumerWidget {
                 : Padding(
                     padding:
                         const EdgeInsets.only(top: AppDimensions.paddingMedium),
-                    child: Text(viewModel.profileViewModel.appBarTitle,
+                    child: Text("To change",
                         style: Theme.of(context).textTheme.titleLarge),
                   ),
             actions: [
