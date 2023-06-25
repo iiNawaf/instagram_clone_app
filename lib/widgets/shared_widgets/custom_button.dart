@@ -4,12 +4,12 @@ import 'package:instagram_clone_app/resources/constants/colors/colors.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
-  String title;
-  Function() click;
-  Color? bgColor;
-  double? opacity;
-  bool isLoading;
-  CustomButton(
+  final String title;
+  final Function() click;
+  final Color? bgColor;
+  final double? opacity;
+  final bool isLoading;
+  const CustomButton(
       {super.key,
       required this.title,
       required this.click,
@@ -22,7 +22,7 @@ class CustomButton extends StatelessWidget {
     return Opacity(
       opacity: opacity ?? 1,
       child: GestureDetector(
-        onTap: click,
+        onTap: isLoading ? null : click,
         child: Container(
           height: AppDimensions.containerHeightSmall,
           decoration: BoxDecoration(

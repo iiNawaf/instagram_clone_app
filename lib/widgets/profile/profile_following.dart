@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileFollowing extends StatelessWidget {
-  int following;
-  ProfileFollowing({super.key, required this.following});
+  final int following;
+  const ProfileFollowing({super.key, required this.following});
 
   @override
   Widget build(BuildContext context) {

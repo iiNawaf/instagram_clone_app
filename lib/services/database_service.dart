@@ -4,13 +4,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class DatabaseService {
   final supabaseClient = Supabase.instance.client;
 
+  // -------- User table methods --------
   Future createUser(UserModel user) async {
     return await supabaseClient.from('users').insert(
         {'id': user.id, 'email': user.email, 'username': user.username});
   }
 
   Future updateUser(Map<String, dynamic> userObj, String uid) async {
-    print("hi : $uid");
     return await supabaseClient.from('users').update(userObj).eq('id', uid);
   }
 
@@ -31,4 +31,14 @@ class DatabaseService {
         .select('email')
         .ilike('email', '%$email%');
   }
+
+  // -------- End of User table methods --------
+
+  // -------- Post table methods --------
+
+  Future createPost(Map<String, dynamic> postObj) async {
+    return await supabaseClient.from('posts').insert(postObj);
+  }
+
+  // -------- End of Post table methods --------
 }

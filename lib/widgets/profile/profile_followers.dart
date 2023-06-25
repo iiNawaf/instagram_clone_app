@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileFollowers extends StatelessWidget {
-  int followers;
-  ProfileFollowers({super.key, required this.followers});
+  final int followers;
+  const ProfileFollowers({super.key, required this.followers});
 
   @override
   Widget build(BuildContext context) {

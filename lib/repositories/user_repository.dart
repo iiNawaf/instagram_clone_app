@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_app/models/user/user_model.dart';
 import 'package:instagram_clone_app/services/auth_service.dart';
 import 'package:instagram_clone_app/services/database_service.dart';
+import 'package:instagram_clone_app/services/storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final userProvider = ChangeNotifierProvider((ref) => UserRepository());
@@ -12,6 +14,7 @@ final userProvider = ChangeNotifierProvider((ref) => UserRepository());
 class UserRepository extends ChangeNotifier {
   DatabaseService databaseService = DatabaseService();
   AuthService authService = AuthService();
+  StorageService storageService = StorageService();
 
   UserModel? _loggedInUser;
   UserModel? get loggedInUser => _loggedInUser;
@@ -47,12 +50,6 @@ class UserRepository extends ChangeNotifier {
       if (authUser != null) {
         final retrievedUser = await databaseService.getUserById(authUser.id);
         fillUserModel(retrievedUser);
-        // _loggedInUser = UserModel(
-        //     id: retrievedUser['id'],
-        //     email: retrievedUser['email'],
-        //     username: retrievedUser['username'],
-        //     profileImageUrl: "",
-        //     bio: retrievedUser['bio']);
         await storeUserDataLocally(_loggedInUser!);
         await autoLogin();
         notifyListeners();
@@ -82,13 +79,7 @@ class UserRepository extends ChangeNotifier {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final data = jsonDecode(prefs.getString("userData")!);
       fillUserModel(data);
-      // _loggedInUser = UserModel(
-      //   name: data['name'],
-      //     id: data['id'],
-      //     email: data['email'],
-      //     username: data['username'],
-      //     profileImageUrl: "",
-      //     bio: data['bio']);
+      print(data);
       notifyListeners();
       return true;
     } else {
@@ -126,11 +117,16 @@ class UserRepository extends ChangeNotifier {
         name: data['name'] ?? "",
         email: data['email'] ?? "",
         username: data['username'] ?? "",
-        profileImageUrl: "",
+        profileImageUrl: data['profileImageUrl'] ?? "",
         bio: data['bio'] ?? "");
   }
 
   // -------- End of Local Storage methods --------
+
+  Future<String?> getImageUrl(File imageFile) async {
+    final fileName = "user-${_loggedInUser!.id}-${DateTime.now()}";
+    return await storageService.uploadImage(imageFile, "users", fileName);
+  }
 
   // -------- Database methods --------
 
@@ -138,13 +134,6 @@ class UserRepository extends ChangeNotifier {
     try {
       fillUserModel(userObj);
       await databaseService.updateUser(userObj, _loggedInUser!.id);
-      // _loggedInUser = UserModel(
-      //     name: userObj['name'],
-      //     id: _loggedInUser!.id,
-      //     email: userObj['email'],
-      //     username: userObj['username'],
-      //     profileImageUrl: "",
-      //     bio: userObj['bio']);
       await storeUserDataLocally(_loggedInUser!);
       notifyListeners();
       return true;
@@ -160,7 +149,6 @@ class UserRepository extends ChangeNotifier {
   Future<bool> isUsernameAlreadyExist(String username) async {
     List<dynamic> data = await databaseService.getUserByUsername(username);
     final search = data.where((element) => username == element['username']);
-    print(search);
     return search.isNotEmpty;
   }
 

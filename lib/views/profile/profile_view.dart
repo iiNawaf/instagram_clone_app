@@ -22,6 +22,7 @@ class ProfileView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(profileViewModelProvider);
+    print(viewModel.loggedInUser().profileImageUrl);
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.paddingMedium),
       child: DefaultTabController(
@@ -39,7 +40,7 @@ class ProfileView extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ProfileImg(
-                          img: "",
+                          imgUrl: viewModel.loggedInUser().profileImageUrl,
                         ),
                         Row(
                           children: [

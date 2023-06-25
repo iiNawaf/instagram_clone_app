@@ -38,7 +38,7 @@ class AppRouter {
               path: AppRoutes.addPostRoutePath,
               name: AppRoutes.addPostRouteName,
               builder: (BuildContext context, GoRouterState state) {
-                return const AddPostView();
+                return AddPostView();
               }),
           GoRoute(
             path: AppRoutes.loginRoutePath,

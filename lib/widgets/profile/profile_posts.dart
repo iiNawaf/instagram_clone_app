@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfilePosts extends StatelessWidget {
-  int posts;
-  ProfilePosts({super.key, required this.posts});
+  final int posts;
+  const ProfilePosts({super.key, required this.posts});
 
   @override
   Widget build(BuildContext context) {

@@ -3,9 +3,9 @@ import 'package:instagram_clone_app/resources/constants/colors/colors.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
 
 class ProfileButton extends StatelessWidget {
-  String title;
-  Function() onTap;
-  ProfileButton({super.key, required this.title, required this.onTap});
+  final String title;
+  final Function() onTap;
+  const ProfileButton({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

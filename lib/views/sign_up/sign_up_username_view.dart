@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:instagram_clone_app/repositories/user_repository.dart';
 import 'package:instagram_clone_app/resources/constants/constants.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
 import 'package:instagram_clone_app/resources/constants/routes/routes.dart';
@@ -72,6 +71,7 @@ class SignUpUsernameView extends HookConsumerWidget {
                   type: "auth",
                   isError: isEmailError.value,
                   controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
                   hintText: "Email address",
                   obscureText: false,
                   suffixIcon: GestureDetector(

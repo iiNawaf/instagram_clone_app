@@ -11,7 +11,7 @@ import 'package:instagram_clone_app/viewmodels/app_manager/app_manager_viewmodel
 import 'package:instagram_clone_app/widgets/shared_widgets/custom_appbar.dart';
 
 final appManagerViewModelProvider = ChangeNotifierProvider((ref) {
-  return AppManagerViewModel();
+  return AppManagerViewModel(ref);
 });
 
 class AppManagerView extends HookConsumerWidget {
@@ -25,12 +25,13 @@ class AppManagerView extends HookConsumerWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(AppDimensions.appBarHeight),
         child: CustomAppBar(
+            leadingWidth: viewModel.selectedIndex.value == 0 ? 120 : 200,
             leading: viewModel.selectedIndex.value == 0
-                ? Image.asset(Constants.logoText, height: 45)
+                ? Image.asset(Constants.logoText)
                 : Padding(
                     padding:
                         const EdgeInsets.only(top: AppDimensions.paddingMedium),
-                    child: Text("To change",
+                    child: Text(viewModel.loggedInUser().username,
                         style: Theme.of(context).textTheme.titleLarge),
                   ),
             actions: [
