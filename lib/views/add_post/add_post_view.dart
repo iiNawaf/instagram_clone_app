@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_app/resources/constants/colors/colors.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
+import 'package:instagram_clone_app/resources/constants/routes/routes.dart';
 import 'package:instagram_clone_app/viewmodels/add_post/add_post_viewmodel.dart';
 import 'package:instagram_clone_app/widgets/add_post/add_post_img.dart';
 import 'package:instagram_clone_app/widgets/add_post/add_post_tag.dart';
@@ -37,15 +38,15 @@ class AddPostView extends HookConsumerWidget {
                       viewModel.isLoading!.value = false;
                       viewModel.showSnackbar(context);
                       return;
-                    }
-                    if (viewModel.image!.value == null) {
+                    } else if (viewModel.image!.value == null) {
                       viewModel.isLoading!.value = false;
                       viewModel.showSnackbar(context);
                       return;
+                    } else {
+                      await ref.read(addPostViewModelProvider).uploadPost();
+                      viewModel.isLoading!.value = false;
+                      context.pushNamed(AppRoutes.appManagerRouteName);
                     }
-                    await ref.read(addPostViewModelProvider).uploadPost();
-                    viewModel.isLoading!.value = false;
-                    context.pop();
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(

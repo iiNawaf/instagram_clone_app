@@ -14,7 +14,7 @@ class AddPostImg extends StatelessWidget {
       width: 90,
       color: AppColors.containerBgColor,
       child: pickedImage != null 
-      ? Image.file(pickedImage!) : const Icon(Icons.image_outlined),
+      ? Image.file(pickedImage!, fit: BoxFit.fill,) : const Icon(Icons.image_outlined),
     );
   }
 }

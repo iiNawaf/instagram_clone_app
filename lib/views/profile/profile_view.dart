@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_app/resources/constants/colors/colors.dart';
 import 'package:instagram_clone_app/resources/constants/dimensions/dimensions.dart';
 import 'package:instagram_clone_app/resources/constants/routes/routes.dart';
 import 'package:instagram_clone_app/viewmodels/profile/profile_viewmodel.dart';
+import 'package:instagram_clone_app/views/loading_view.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_bio.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_button.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_followers.dart';
@@ -12,18 +14,37 @@ import 'package:instagram_clone_app/widgets/profile/profile_following.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_img.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_posts.dart';
 import 'package:instagram_clone_app/widgets/profile/profile_name.dart';
+import 'package:instagram_clone_app/widgets/profile/profile_posts_gridview.dart';
 
 final profileViewModelProvider = ChangeNotifierProvider((ref) {
   return ProfileViewModel(ref);
 });
 
-class ProfileView extends ConsumerWidget {
+class ProfileView extends HookConsumerWidget {
   const ProfileView({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(profileViewModelProvider);
-    print(viewModel.loggedInUser().profileImageUrl);
-    return Padding(
+    viewModel.isLoading = useState(false);
+    viewModel.isInit = useState(true);
+    if (viewModel.isInit!.value) {
+      useEffect(() {
+        if (viewModel.isInit!.value) {
+          Future.microtask(() async {
+            viewModel.isLoading!.value = true;
+            await viewModel.fetchUserPosts();
+            viewModel.isLoading!.value = false;
+          });
+          viewModel.isInit!.value = false;
+        }
+        return () {
+          print("disp");
+        };
+      });
+    }
+    return viewModel.isLoading!.value 
+    ? const LoadingView()
+    : Padding(
       padding: const EdgeInsets.all(AppDimensions.paddingMedium),
       child: DefaultTabController(
         length: 2,
@@ -125,10 +146,10 @@ class ProfileView extends ConsumerWidget {
               ),
             ];
           },
-          body: const TabBarView(
+          body: TabBarView(
             children: [
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
+              ProfilePostsGridView(posts: viewModel.getUserPosts()),
+              const Icon(Icons.directions_bike),
             ],
           ),
         ),

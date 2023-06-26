@@ -38,6 +38,11 @@ class AppTheme {
       // Body
       bodySmall: TextStyle(color: AppColors.secondaryTextColor, fontSize: AppDimensions.fontExtraSmall),
       bodyMedium: TextStyle(color: AppColors.primaryTextColor, fontSize: AppDimensions.fontSmall),
+
+      headlineSmall: TextStyle(
+          color: AppColors.primaryTextColor,
+          fontSize: AppDimensions.fontSmall,
+          fontWeight: FontWeight.bold),
     ),
 
     textSelectionTheme: const TextSelectionThemeData(

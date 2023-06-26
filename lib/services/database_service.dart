@@ -40,5 +40,13 @@ class DatabaseService {
     return await supabaseClient.from('posts').insert(postObj);
   }
 
+  Future<List<dynamic>> fetchAllPosts() async {
+    return await supabaseClient.from('posts').select();
+  }
+
+  Future<List<dynamic>> fetchUserPosts(String uid) async {
+    return await supabaseClient.from('posts').select().eq('user_id', uid);
+  }
+
   // -------- End of Post table methods --------
 }

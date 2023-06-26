@@ -6,7 +6,9 @@ import 'package:instagram_clone_app/resources/constants/routes/routes.dart';
 import 'package:instagram_clone_app/views/add_post/add_post_view.dart';
 import 'package:instagram_clone_app/views/app_manager/app_manager_view.dart';
 import 'package:instagram_clone_app/views/login/login_view.dart';
+import 'package:instagram_clone_app/views/home/post_view.dart';
 import 'package:instagram_clone_app/views/profile/edit_profile_view.dart';
+import 'package:instagram_clone_app/views/profile/user_profile_view.dart';
 import 'package:instagram_clone_app/views/sign_up/sign_up_password_view.dart';
 import 'package:instagram_clone_app/views/sign_up/sign_up_username_view.dart';
 
@@ -69,6 +71,25 @@ class AppRouter {
             name: AppRoutes.editProfileName,
             builder: (BuildContext context, GoRouterState state) {
               return EditProfileView();
+            },
+          ),
+          GoRoute(
+            path: '${AppRoutes.userProfilePath}/:id',
+            name: AppRoutes.userProfileName,
+            builder: (BuildContext context, GoRouterState state) {
+              return UserProfileView(
+                id: state.pathParameters['id']!,
+              );
+            },
+          ),
+          GoRoute(
+            path: '${AppRoutes.postPath}/:id',
+            name: AppRoutes.postName,
+            builder: (BuildContext context, GoRouterState state) {
+              return PostView(
+                id: state.pathParameters['id']!,
+                userId: state.queryParameters['user_id']!,
+              );
             },
           ),
         ]);

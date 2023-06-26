@@ -7,6 +7,8 @@ class AppRoutes {
   static const String signUpRoutePasswordPath = '/sign_up_password';
   static const String profilePath = '/profile';
   static const String editProfilePath = '/edit_profile';
+  static const String userProfilePath = '/user_profile';
+  static const String postPath = '/post';
 
   // Names
   static const String appManagerRouteName = 'app_manager';
@@ -16,4 +18,6 @@ class AppRoutes {
   static const String signUpRoutePasswordName = 'sign_up_password';
   static const String profileName = 'profile';
   static const String editProfileName = 'edit_profile';
+  static const String userProfileName = 'user_profile';
+  static const String postName = 'post';
 }

@@ -79,7 +79,6 @@ class UserRepository extends ChangeNotifier {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final data = jsonDecode(prefs.getString("userData")!);
       fillUserModel(data);
-      print(data);
       notifyListeners();
       return true;
     } else {
@@ -141,6 +140,10 @@ class UserRepository extends ChangeNotifier {
       print("error: $e");
       return false;
     }
+  }
+
+  Future<Map<String, dynamic>> fetchRetrievedUser(String id) async {
+    return await databaseService.getUserById(id);
   }
 
   // --------  End of Database methods --------

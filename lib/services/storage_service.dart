@@ -11,7 +11,7 @@ class StorageService {
       await supabaseClient.storage
           .from(bucketName)
           .upload('$folder/$fileName', imageFile!);
-      final url = await getImageUrl(fileName);
+      final url = await getImageUrl(fileName, folder);
       return url;
     } catch (e) {
       print("Upload image failed: $e");
@@ -19,8 +19,8 @@ class StorageService {
     }
   }
 
-  Future<String> getImageUrl(String fileName) async {
-    final String file = supabaseClient.storage.from('$bucketName/users').getPublicUrl(fileName);
+  Future<String> getImageUrl(String fileName, String folder) async {
+    final String file = supabaseClient.storage.from('$bucketName/$folder').getPublicUrl(fileName);
     return file;
   }
 }
