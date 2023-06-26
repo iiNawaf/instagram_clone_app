@@ -32,7 +32,8 @@ class UserProfileView extends HookConsumerWidget {
       if (viewModel.isInit!.value) {
         viewModel.isLoading!.value = true;
         Future.microtask(() async {
-          await viewModel.fetchRetrievedUser(id);
+          await viewModel.fetchvisitedUser(id);
+          await viewModel.fetchvisitedUserPosts(id);
           viewModel.isLoading!.value = false;
         });
         viewModel.isInit!.value = false;
@@ -52,7 +53,7 @@ class UserProfileView extends HookConsumerWidget {
             body: Padding(
               padding: const EdgeInsets.all(AppDimensions.paddingMedium),
               child: DefaultTabController(
-                length: 2,
+                length: 1,
                 child: NestedScrollView(
                   floatHeaderSlivers: true,
                   clipBehavior: Clip.none,
@@ -66,7 +67,8 @@ class UserProfileView extends HookConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 ProfileImg(
-                                  imgUrl: viewModel.visitedUser!.profileImageUrl,
+                                  imgUrl:
+                                      viewModel.visitedUser!.profileImageUrl,
                                 ),
                                 Row(
                                   children: [
@@ -147,7 +149,7 @@ class UserProfileView extends HookConsumerWidget {
                               indicatorWeight: 0.5,
                               tabs: [
                                 Tab(icon: Icon(Icons.grid_on)),
-                                Tab(icon: Icon(Icons.person_pin_outlined)),
+                                // Tab(icon: Icon(Icons.person_pin_outlined)),
                               ],
                             ),
                           ],
@@ -157,8 +159,8 @@ class UserProfileView extends HookConsumerWidget {
                   },
                   body: TabBarView(
                     children: [
-                      ProfilePostsGridView(posts: []),
-                      const Icon(Icons.directions_bike),
+                      ProfilePostsGridView(posts: viewModel.getUserPosts()),
+                      // const Icon(Icons.directions_bike),
                     ],
                   ),
                 ),

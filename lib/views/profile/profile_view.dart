@@ -47,7 +47,7 @@ class ProfileView extends HookConsumerWidget {
     : Padding(
       padding: const EdgeInsets.all(AppDimensions.paddingMedium),
       child: DefaultTabController(
-        length: 2,
+        length: 1,
         child: NestedScrollView(
           floatHeaderSlivers: true,
           clipBehavior: Clip.none,
@@ -138,7 +138,7 @@ class ProfileView extends HookConsumerWidget {
                       indicatorWeight: 0.5,
                       tabs: [
                         Tab(icon: Icon(Icons.grid_on)),
-                        Tab(icon: Icon(Icons.person_pin_outlined)),
+                        // Tab(icon: Icon(Icons.person_pin_outlined)),
                       ],
                     ),
                   ],
@@ -149,7 +149,7 @@ class ProfileView extends HookConsumerWidget {
           body: TabBarView(
             children: [
               ProfilePostsGridView(posts: viewModel.getUserPosts()),
-              const Icon(Icons.directions_bike),
+              // const Icon(Icons.directions_bike),
             ],
           ),
         ),
